@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-05-05T16:28:17.325Z",
+  "entries": [
+    "docs",
+    "lex",
+    "local-llm-expert",
+    "seek-and-analyze-video"
+  ]
+}

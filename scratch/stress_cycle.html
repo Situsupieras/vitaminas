@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ciclo del Estrés - Magnesio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap');
+        body { margin: 0; background: #000; color: #fff; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; width: 1080px; height: 1920px; }
+        .container { width: 90%; text-align: center; }
+        .step { font-size: 5rem; font-weight: 900; margin: 40px 0; opacity: 0; transform: scale(0.8); }
+        .arrow { font-size: 4rem; color: #fca311; opacity: 0; }
+        
+        .active { animation: popIn 0.8s forwards; }
+        .arrow-active { animation: fadeIn 0.5s forwards; }
+
+        @keyframes popIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .magnesium-level {
+            width: 300px;
+            height: 50px;
+            border: 4px solid #fff;
+            margin: 50px auto;
+            position: relative;
+        }
+        .fill {
+            width: 100%;
+            height: 100%;
+            background: #4facfe;
+            animation: drain 5s linear forwards;
+            animation-delay: 4s;
+        }
+        @keyframes drain {
+            to { width: 5%; background: #ff4b2b; }
+        }
+        .label { font-size: 2rem; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="step s1">Tráfico en Carr. a El Salvador 🚗</div>
+        <div class="arrow a1">⬇️</div>
+        <div class="step s2">Estrés y Cortisol 📈</div>
+        <div class="arrow a2">⬇️</div>
+        <div class="step s3">Tus células expulsan Magnesio 🚽</div>
+        
+        <div class="magnesium-level">
+            <div class="fill"></div>
+        </div>
+        <div class="label">Nivel de Magnesio de Andrés</div>
+    </div>
+
+    <script>
+        setTimeout(() => document.querySelector('.s1').classList.add('active'), 500);
+        setTimeout(() => document.querySelector('.a1').classList.add('arrow-active'), 1500);
+        setTimeout(() => document.querySelector('.s2').classList.add('active'), 2500);
+        setTimeout(() => document.querySelector('.a2').classList.add('arrow-active'), 3500);
+        setTimeout(() => document.querySelector('.s3').classList.add('active'), 4500);
+    </script>
+</body>
+</html>

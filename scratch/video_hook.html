@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Hook: Magnesio VIP</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 1080px;
+            height: 1920px; /* TikTok/Reels format */
+            background-color: #0d1117;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 80%;
+            text-align: center;
+            position: relative;
+        }
+
+        .text-line {
+            font-size: 6rem;
+            font-weight: 900;
+            line-height: 1.2;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #fca311;
+            text-shadow: 0 0 20px rgba(252, 163, 17, 0.5);
+        }
+
+        .subtext {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #a0aabf;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            animation-delay: 2.5s;
+            margin-top: 50px;
+        }
+
+        .capsule-container {
+            margin-top: 100px;
+            opacity: 0;
+            animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation-delay: 4s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .capsule-part {
+            padding: 20px 40px;
+            font-size: 3rem;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .citrato {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #000;
+        }
+
+        .glicinato {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: #000;
+        }
+
+        /* Animations */
+        .line1 { animation-delay: 0.5s; }
+        .line2 { animation-delay: 1.5s; }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-line line1">Tus células son como una <span class="highlight">discoteca VIP</span></div>
+        <div class="text-line line2">Y el magnesio barato es la gente ruidosa que el guardia <span class="highlight">saca a patadas.</span></div>
+        
+        <div class="subtext">Para entrar, necesitas el pase doble:</div>
+        
+        <div class="capsule-container">
+            <div class="capsule-part citrato">Citrato (Energía)</div>
+            <div class="capsule-part glicinato">Glicinato (Calma)</div>
+        </div>
+    </div>
+</body>
+</html>

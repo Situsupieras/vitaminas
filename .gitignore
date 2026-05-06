@@ -1,0 +1,30 @@
+# Virtual Environments
+.venv_marketing/
+venv/
+.venv/
+
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary
+scratch/*.mp3
+scratch/*.mp4
+scratch/slides/
+
+# Large generated files
+*.mp4
+*.mp3
+*.wav

@@ -1,0 +1,189 @@
+{
+  "name": "TINITA HEALTH - Motor de Marketing (Pipeline 10 Fases)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tinita-marketing",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook: Recibir Producto",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"meta-llama/llama-4-maverick:free\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a Market Research Agent based on Russell Brunson's Secret Formula (DotCom Secrets), Chet Holmes' Dream 100 (The Ultimate Sales Machine), W. Chan Kim's Blue Ocean Strategy, and April Dunford's Obviously Awesome positioning framework plus Al Ries & Jack Trout's Positioning: The Battle for Your Mind.\\n\\nYou MUST output in Spanish (Latin American). Generate:\\n1. DREAM CUSTOMER: Hyper-detailed avatar with exact name, age, marital status, children, profession, monthly income in Quetzales.\\n2. PAINS: 3-5 emotional pains. DESIRES: 3-5 secret desires. PAST FRUSTRATIONS.\\n3. AVATAR VISUALIZATION PROMPT in English for AI image generation.\\n4. DREAM 100 MAP: 10 sources (podcasts, YouTube, Instagram, FB groups) Guatemala-specific.\\n5. BLUE OCEAN: Red Ocean vs Blue Ocean angle.\\n6. ASK CAMPAIGN: 10 questions in the avatar's own voice.\\n7. COMPETITIVE ALTERNATIVES: 3 real alternatives.\\n8. UNIQUE ATTRIBUTES vs VALUE table.\\n9. THE MENTAL WORD (Ries/Trout): One word to own in consumer's mind.\\n10. POSITIONING STATEMENT.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Generate the complete research and positioning report for: {{ $json.product_name }}. Ingredients: {{ $json.ingredients }}. Price: {{ $json.price }}. Market: Guatemala 2026. {{ $json.avatar_context }}\"\n    }\n  ],\n  \"max_tokens\": 4096,\n  \"temperature\": 0.7\n}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "nodo-2-research",
+      "name": "Nodo 2: Investigación + Posicionamiento",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OPENROUTER_CREDENTIAL_ID",
+          "name": "OpenRouter API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"meta-llama/llama-4-maverick:free\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a Funnel Architect based on Russell Brunson (DotCom Secrets), Dan Kennedy (No B.S. Guide — the business that can spend the MOST to acquire a customer wins), Mark Joyner (Integration Marketing), Blair Warren (One Sentence Persuasion Course), Dan Ariely (Predictably Irrational), and Brafman (Sway — pre-framing for pricing).\\n\\nOutput in Spanish. Generate:\\n1. SECRET FORMULA: Who, Where, Bait, Result.\\n2. VALUE LADDER: Free → Frontend → Middle → Backend.\\n3. KENNEDY'S CAC: Maximum customer acquisition cost.\\n4. JOYNER ALLIANCE: 1 integration marketing opportunity.\\n5. FUNNEL TYPE & PAGES.\\n6. BLAIR WARREN'S 5 PHRASES with exact copy.\\n7. IRRATIONAL OFFER (Ariely): Price anchoring + FREE trigger.\\n8. PRICE PRE-FRAME (Brafman).\\n9. 30-DAY GUARANTEE statement.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Previous research: {{ $node['Nodo 2: Investigación + Posicionamiento'].json.body.choices[0].message.content }}\\n\\nProduct: {{ $node['Webhook: Recibir Producto'].json.product_name }}. Price: {{ $node['Webhook: Recibir Producto'].json.price }}. Design the funnel and persuasion strategy.\"\n    }\n  ],\n  \"max_tokens\": 4096,\n  \"temperature\": 0.7\n}",
+        "options": {}
+      },
+      "id": "nodo-3-funnel",
+      "name": "Nodo 3: Embudo + Persuasión",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [740, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OPENROUTER_CREDENTIAL_ID",
+          "name": "OpenRouter API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"meta-llama/llama-4-maverick:free\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a Movement Creator and Pattern Disruptor based on Russell Brunson (Expert Secrets — Epiphany Bridge, Attractive Character), Eric Hoffer (The True Believer — Promised Land), Brendan Kane (Hook Point — 3-second attention), and Brafman (Sway — pre-framing).\\n\\nOutput in Spanish. Generate:\\n1. 3 PILLARS: Attractive Character, The Cause, The New Opportunity.\\n2. EPIPHANY BRIDGE: 4-step story.\\n3. PROMISED LAND (Hoffer).\\n4. ANTI-TECHNOBABBLE ANALOGY.\\n5. COUNTER-INTUITIVE CONCEPT.\\n6. 5 NATIONAL ENQUIRER HOOKS.\\n7. 3 VISUAL HOOKS for TikTok.\\n8. PRE-FRAME (Brafman).\\n9. BRIDGE TO STORY transition phrase.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Research: {{ $node['Nodo 2: Investigación + Posicionamiento'].json.body.choices[0].message.content }}\\n\\nFunnel: {{ $node['Nodo 3: Embudo + Persuasión'].json.choices[0].message.content }}\\n\\nCreate the movement and hooks for: {{ $node['Webhook: Recibir Producto'].json.product_name }}.\"\n    }\n  ],\n  \"max_tokens\": 4096,\n  \"temperature\": 0.7\n}",
+        "options": {}
+      },
+      "id": "nodo-4-story",
+      "name": "Nodo 4: Storytelling + Ganchos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1000, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OPENROUTER_CREDENTIAL_ID",
+          "name": "OpenRouter API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"meta-llama/llama-4-maverick:free\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a Direct Response Copywriter based on Eugene Schwartz (Breakthrough Advertising — 5 awareness levels), Robert Collier (enter the mental conversation), and Masterson (Great Leads — 6 lead types).\\n\\nOutput in Spanish. Generate:\\n1. AWARENESS ANALYSIS + Masterson lead type.\\n2. 3 SHORT-FORM VIDEO SCRIPTS (60s each): Hook → Retention → Solution → CTA. EXACT teleprompter text.\\n3. 2 FACEBOOK ADS: Ad 1 = Cold (Story Lead). Ad 2 = Retargeting (Offer Lead).\\n4. 3 SOAP OPERA EMAILS following Brunson's sequence.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"All accumulated data — Research: {{ $node['Nodo 2: Investigación + Posicionamiento'].json.body.choices[0].message.content }}\\n\\nFunnel: {{ $node['Nodo 3: Embudo + Persuasión'].json.choices[0].message.content }}\\n\\nStory+Hooks: {{ $node['Nodo 4: Storytelling + Ganchos'].json.choices[0].message.content }}\\n\\nWrite all copy for: {{ $node['Webhook: Recibir Producto'].json.product_name }}.\"\n    }\n  ],\n  \"max_tokens\": 4096,\n  \"temperature\": 0.7\n}",
+        "options": {}
+      },
+      "id": "nodo-5-copy",
+      "name": "Nodo 5: Copywriting",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1260, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OPENROUTER_CREDENTIAL_ID",
+          "name": "OpenRouter API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"meta-llama/llama-4-maverick:free\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a Content Calendar Strategist based on Gary Vaynerchuk (Jab Jab Jab Right Hook — 3:1 ratio) and Russell Brunson (Traffic Secrets publishing cadence).\\n\\nRules: Days 1-21 = VALUE (Jabs). Days 22-28 = SOFT SELL. Days 29-30 = HARD CTA (Right Hook).\\n\\nOutput in Spanish. Generate a 30-day markdown TABLE with columns: Day | Platform (IG/FB/TikTok/Email/WhatsApp) | Format (Reel/Carousel/Story/Email/Ad) | Content Hour (1-7) | Caption/Subject | Type (JAB or HOOK).\\n\\nAlso distribute the 3 Soap Opera emails across the 30 days.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Copy assets: {{ $node['Nodo 5: Copywriting'].json.choices[0].message.content }}\\n\\nStory+Hooks: {{ $node['Nodo 4: Storytelling + Ganchos'].json.choices[0].message.content }}\\n\\nCreate the 30-day editorial calendar for: {{ $node['Webhook: Recibir Producto'].json.product_name }}.\"\n    }\n  ],\n  \"max_tokens\": 4096,\n  \"temperature\": 0.7\n}",
+        "options": {}
+      },
+      "id": "nodo-6-calendar",
+      "name": "Nodo 6: Calendario Editorial",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1520, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OPENROUTER_CREDENTIAL_ID",
+          "name": "OpenRouter API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"status\": \"success\",\n  \"product\": \"{{ $node['Webhook: Recibir Producto'].json.product_name }}\",\n  \"outputs\": {\n    \"research\": \"{{ $node['Nodo 2: Investigación + Posicionamiento'].json.body.choices[0].message.content.substring(0, 200) }}...\",\n    \"funnel\": \"Generated\",\n    \"story\": \"Generated\",\n    \"copy\": \"Generated\",\n    \"calendar\": \"Generated\"\n  }\n}"
+      },
+      "id": "nodo-7-response",
+      "name": "Nodo 7: Respuesta Final",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1780, 300]
+    }
+  ],
+  "connections": {
+    "Webhook: Recibir Producto": {
+      "main": [
+        [{"node": "Nodo 2: Investigación + Posicionamiento", "type": "main", "index": 0}]
+      ]
+    },
+    "Nodo 2: Investigación + Posicionamiento": {
+      "main": [
+        [{"node": "Nodo 3: Embudo + Persuasión", "type": "main", "index": 0}]
+      ]
+    },
+    "Nodo 3: Embudo + Persuasión": {
+      "main": [
+        [{"node": "Nodo 4: Storytelling + Ganchos", "type": "main", "index": 0}]
+      ]
+    },
+    "Nodo 4: Storytelling + Ganchos": {
+      "main": [
+        [{"node": "Nodo 5: Copywriting", "type": "main", "index": 0}]
+      ]
+    },
+    "Nodo 5: Copywriting": {
+      "main": [
+        [{"node": "Nodo 6: Calendario Editorial", "type": "main", "index": 0}]
+      ]
+    },
+    "Nodo 6: Calendario Editorial": {
+      "main": [
+        [{"node": "Nodo 7: Respuesta Final", "type": "main", "index": 0}]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    {"name": "TINITA HEALTH"},
+    {"name": "Marketing Automation"}
+  ]
+}
