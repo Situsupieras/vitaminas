@@ -4,3 +4,4 @@ edge-tts
 gTTS
 moviepy
 Pillow
+google-cloud-texttospeech
