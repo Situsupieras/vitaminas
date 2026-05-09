@@ -1,0 +1,29 @@
+/* TABLET+ */
+@media(min-width:768px){.container{padding:0 2rem}}
+@media(min-width:768px){.nav-links{display:flex}}
+@media(min-width:768px){.trust-grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:768px){.steps-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:768px){.compare-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:768px){.cat-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:768px){.cat-card.featured{grid-column:span 2}}
+@media(min-width:768px){.extra-body{grid-template-columns:repeat(5,1fr)}}
+@media(min-width:768px){.quiz-box{padding:3rem 2.5rem}}
+@media(min-width:768px){.price-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:768px){.testi-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:768px){.footer-grid{grid-template-columns:2fr 1fr 1fr}}
+@media(min-width:768px){.bridge-horiz{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:768px){.prod-cards{grid-template-columns:repeat(3,1fr)}}
+
+/* DESKTOP */
+@media(min-width:1024px){.hero-grid{grid-template-columns:1fr 1fr}}
+
+/* MOBILE */
+@media(max-width:480px){
+  .btn{width:100%;justify-content:center}
+  .nav-cta{width:auto!important}
+  #wa-fab{width:64px;height:64px}
+  #wa-fab svg{width:34px;height:34px}
+  .sec{padding:2.25rem 0}
+  #hero{padding:5rem 0 3rem}
+  .bridge-horiz{grid-template-columns:repeat(2,1fr)}
+}
