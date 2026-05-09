@@ -28,3 +28,8 @@ scratch/slides/
 *.mp4
 *.mp3
 *.wav
+
+# Claude Code / AI Tools
+awesome-skills/
+superpowers/
+.claude/
