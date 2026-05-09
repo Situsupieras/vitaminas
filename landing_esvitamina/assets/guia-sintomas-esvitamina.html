@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Síntomas — Es Vitamina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@page { margin: 1.5cm; size: A4 portrait; }
+@media print {
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .no-print { display: none !important; }
+}
+
+:root {
+  --brand-deep:    #0A2540;
+  --brand-primary: #1A6B4A;
+  --brand-accent:  #E8A838;
+  --brand-mint:    #3ECFA0;
+  --bg-light:      #F7F9FC;
+  --text-primary:  #1A1A2E;
+  --text-secondary:#5A6678;
+  --border-soft:   #E2E8F0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  background: #fff;
+  font-size: 11.5px;
+  line-height: 1.45;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* PRINT HINT */
+.print-hint {
+  background: #fef3cd;
+  border: 1px solid #e8a838;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: #856404;
+  text-align: center;
+}
+
+/* HEADER */
+.pdf-header {
+  background: var(--brand-deep);
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pdf-logo {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.3px;
+}
+
+.pdf-logo span { color: var(--brand-accent); }
+
+.pdf-tagline {
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.7);
+  font-style: italic;
+  text-align: right;
+  line-height: 1.4;
+}
+
+/* TITLE BAR */
+.pdf-title-bar {
+  background: var(--brand-primary);
+  padding: 12px 20px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.pdf-title-bar h1 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 3px;
+  letter-spacing: -0.2px;
+}
+
+.pdf-title-bar p {
+  font-size: 10px;
+  color: rgba(255,255,255,0.8);
+}
+
+/* ACCENT LINE */
+.accent-line {
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-accent) 0%, var(--brand-mint) 100%);
+  margin-bottom: 16px;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0;
+  border-radius: 0 0 6px 6px;
+  overflow: hidden;
+}
+
+thead tr {
+  background: var(--brand-deep);
+}
+
+thead th {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  padding: 8px 14px;
+  text-align: left;
+  color: rgba(255,255,255,0.85);
+}
+
+thead th:first-child { width: 36px; text-align: center; }
+thead th:nth-child(3) { width: 24px; text-align: center; }
+
+tbody tr:nth-child(even) { background: var(--bg-light); }
+tbody tr:nth-child(odd) { background: #fff; }
+
+tbody td {
+  padding: 8px 14px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 11.5px;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+
+.td-emoji {
+  font-size: 17px;
+  text-align: center;
+  width: 36px;
+  line-height: 1;
+}
+
+.td-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  width: 24px;
+  text-align: center;
+}
+
+.td-symptom {
+  font-weight: 500;
+  color: var(--text-primary);
+  padding-right: 8px;
+}
+
+.td-arrow {
+  color: var(--brand-accent);
+  font-weight: 800;
+  font-size: 14px;
+  text-align: center;
+  width: 24px;
+}
+
+.td-suplemento {
+  font-weight: 600;
+  color: var(--brand-primary);
+}
+
+.td-suplemento em {
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  display: block;
+  margin-top: 1px;
+}
+
+/* FOOTER */
+.pdf-footer {
+  background: var(--brand-deep);
+  padding: 13px 20px 10px;
+  border-radius: 0 0 10px 10px;
+  margin-top: 0;
+}
+
+.pdf-footer-cta {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand-accent);
+  margin-bottom: 5px;
+}
+
+.pdf-footer-links {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 8px;
+}
+
+.pdf-footer-links a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 10.5px;
+  font-weight: 500;
+}
+
+.pdf-footer-links a::before { content: '→ '; color: var(--brand-mint); }
+
+.pdf-disclaimer {
+  color: rgba(255,255,255,0.5);
+  font-size: 8.5px;
+  line-height: 1.55;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 7px;
+  margin-top: 7px;
+}
+
+.pdf-copyright {
+  color: rgba(255,255,255,0.4);
+  font-size: 8.5px;
+  margin-top: 5px;
+}
+</style>
+</head>
+<body>
+
+<!-- Hint visible solo en pantalla -->
+<div class="print-hint no-print">
+  💡 <strong>Para generar el PDF:</strong> Ctrl+P → «Guardar como PDF» → Tamaño: A4 · Márgenes: Predeterminados · ✅ Gráficos en segundo plano activado
+</div>
+
+<!-- HEADER -->
+<div class="pdf-header">
+  <div class="pdf-logo">Es <span>Vitamina</span></div>
+  <div class="pdf-tagline">Tu cuerpo sabe.<br>Dale lo que pide.</div>
+</div>
+
+<!-- TITLE BAR -->
+<div class="pdf-title-bar">
+  <h1>Guía: ¿Qué te falta? Los 10 síntomas y qué tomar</h1>
+  <p>Guía de uso personal · Compartida por Es Vitamina · Guatemala 🇬🇹</p>
+</div>
+
+<!-- ACCENT LINE -->
+<div class="accent-line"></div>
+
+<!-- TABLE -->
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th style="padding-left:8px;">Síntoma</th>
+      <th></th>
+      <th>Suplemento recomendado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="td-emoji">😩</td>
+      <td class="td-symptom">Cansancio constante</td>
+      <td class="td-arrow">→</td>
+      <td class="td-suplemento">B12 + Complejo B<em>Activa el metabolismo energético celular</em></td>
+    </tr>
+    <tr>
+      <td class="td-emoji">😴</td>
+      <td class="td-symptom">Insomnio o sueño ligero</td>
+      <td class="td-arrow">→</td>
+      <td class="td-suplemento">Magnesio Glicinato + Melatonina<em>Relaja el sistema nervioso y regula el ciclo de sueño</em></td>
+    </tr>
+    <tr>
+      <td class="td-emoji">🤧</td>
+      <td class="td-symptom">Te enfermás seguido</td>
+      <td class="td-arrow">→</td>
+      <td class="td-suplemento">Vitamina C 1000mg + Zinc<em>Activa y mantiene el sistema inmune fuerte</em></td>
+    </tr>
+    <tr>
+      <td class="td-emoji">✨</td>
+      <td class="td-symptom">Piel opaca / cabello débil</td>
+      <td class="td-arrow">→</td>
+      <td class="td-suplemento">Biotina 10000mcg + Colágeno<em>Nutrición profunda desde adentro</em></td>
+    </tr>
+    <tr>
+      <td class="td-emoji">🦴</td>
+      <td class="td-symptom">Dolor articular</td>
+      <td class="td-arrow">→</td>
+      <td class="td-suplemento">Glucosamina + D3+K2<em>Lubrica articulaciones y fortalece huesos</em></td>
+    </tr>
+    <tr>
+      <td class="td-emoji">🧠</td>
+      <td class="td-symptom">Niebla mental</td>
+      <td class="td-arrow">→</td>
+      <td class="td-suplemento">Omega 3 + Ginkgo Biloba<em>Mejora la circulación cerebral y la concentración</em></td>
+    </tr>
+    <tr>
+      <td class="td-emoji">😰</td>
+      <td class="td-symptom">Estrés o ansiedad</td>
+      <td class="td-arrow">→</td>
+      <td class="td-suplemento">Ashwagandha + GABA<em>Adaptógenos naturales para calmar el sistema nervioso</em></td>
+    </tr>
+    <tr>
+      <td class="td-emoji">🍽️</td>
+      <td class="td-symptom">Digestión lenta</td>
+      <td class="td-arrow">→</td>
+      <td class="td-suplemento">Probiótico + Enzimas Digestivas<em>Restaura la flora intestinal y mejora la absorción</em></td>
+    </tr>
+    <tr>
+      <td class="td-emoji">💪</td>
+      <td class="td-symptom">Calambres / tensión muscular</td>
+      <td class="td-arrow">→</td>
+      <td class="td-suplemento">Magnesio Citrato + Potasio<em>Electrolitos esenciales para la función muscular</em></td>
+    </tr>
+    <tr>
+      <td class="td-emoji">🔥</td>
+      <td class="td-symptom">Baja libido / energía hormonal</td>
+      <td class="td-arrow">→</td>
+      <td class="td-suplemento">DHEA + Maca<em>Apoyo natural al equilibrio hormonal</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- FOOTER -->
+<div class="pdf-footer">
+  <div class="pdf-footer-cta">¿Querés asesoría personalizada gratis?</div>
+  <div class="pdf-footer-links">
+    <a href="https://wa.me/50230139416">wa.me/50230139416</a>
+    <a href="mailto:situsupierasnutricion@gmail.com">situsupierasnutricion@gmail.com</a>
+  </div>
+  <div class="pdf-disclaimer">
+    Los productos ofrecidos son suplementos alimenticios y no sustituyen una dieta equilibrada ni tratamiento médico. Los resultados pueden variar. Consulte a su médico antes de iniciar cualquier suplementación, especialmente si está embarazada, amamantando, o toma medicamentos. Es Vitamina no hace claims de curar, tratar o prevenir enfermedades.
+  </div>
+  <div class="pdf-copyright">© 2026 Es Vitamina — Todos los derechos reservados · Guatemala 🇬🇹</div>
+</div>
+
+</body>
+</html>
