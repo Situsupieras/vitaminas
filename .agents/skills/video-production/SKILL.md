@@ -21,8 +21,9 @@ Reusable pipeline for producing educational video content (Masterclasses, Reels,
 ## The Presenter: Marco Villagrán
 - **Role**: Especialista en Bienestar de TINITA HEALTH (NO usar "Dr." para evitar implicaciones médicas)
 - **Appearance**: Latino, 38-42 años, barba corta, lentes, camisa gris oscuro mandarin collar
-- **Voice**: `es-GT-AndresNeural` (Edge TTS) o gTTS español
+- **Voice**: `es-GT-AndresNeural` (Edge TTS) o `es-US-Neural2-B` (Google Cloud TTS)
 - **Usage**: Same avatar for ALL 82 products (brand consistency)
+
 
 ## Production Pipeline
 
@@ -41,8 +42,12 @@ python c:\proyectos\vitaminas\scratch\prepare_audio_text.py
 # Option B: Edge TTS (Free, better quality, requires network)
 edge-tts --voice es-GT-AndresNeural --file input.txt --write-media output.mp3
 
-# Option C: ElevenLabs (Premium, $5/mo, best quality)
+# Option C: Google Cloud TTS (Premium, API Key required)
+.venv_marketing\Scripts\python scratch\generate_audio_google.py
+
+# Option D: ElevenLabs (Premium, $5/mo, best quality)
 # Use ElevenLabs API with cloned voice
+
 ```
 
 ### Step 3: Slide Generation
