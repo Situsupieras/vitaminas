@@ -1,5 +1,9 @@
 const qd = {};
 let step = 1;
+const goalLabels = {
+  energia:'Energía', sueno:'Sueño', inmunidad:'Inmunidad',
+  belleza:'Belleza', articulaciones:'Articulaciones', digestion:'Digestión'
+};
 const recs = {
   energia:        { p:'Complejo B + CoQ10',               d:'La combinación ideal para energía celular sostenida. El Complejo B activa el metabolismo energético y el CoQ10 potencia la producción de ATP en cada célula.' },
   sueno:          { p:'Magnesio Glicinato + Melatonina',   d:'El Magnesio Glicinato relaja el sistema nervioso de forma profunda, mientras que la Melatonina regula tu ciclo de sueño. La combinación más efectiva para sueño reparador.' },
@@ -25,37 +29,50 @@ function next() {
   } else { showRes(); }
 }
 
-function submitLead() {
+function startSubmit() {
   const nameEl = document.getElementById('lead-name');
   const phoneEl = document.getElementById('lead-phone');
-  let valid = true;
   nameEl.classList.remove('error');
   phoneEl.classList.remove('error');
+  let valid = true;
   if (!nameEl.value.trim()) { nameEl.classList.add('error'); valid = false; }
   if (!phoneEl.value.trim()) { phoneEl.classList.add('error'); valid = false; }
   if (!valid) return;
+  const btn = document.querySelector('#s4 .btn-primary');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-dot"></span> Calculando...';
+  setTimeout(submitLead, 1000);
+}
+
+function submitLead() {
+  const nameEl = document.getElementById('lead-name');
+  const name = nameEl.value.trim();
   const leads = JSON.parse(localStorage.getItem('esvitamina_leads') || '[]');
-  leads.push({name:nameEl.value.trim(),phone:phoneEl.value.trim(),goal:qd.goal,age:qd.age,urgency:qd.urgency,timestamp:new Date().toISOString()});
+  leads.push({name, phone:document.getElementById('lead-phone').value.trim(), goal:qd.goal, age:qd.age, urgency:qd.urgency, timestamp:new Date().toISOString()});
   localStorage.setItem('esvitamina_leads', JSON.stringify(leads));
   document.getElementById('s4').classList.remove('active');
   ['b1','b2','b3','b4'].forEach(id => document.getElementById(id).classList.add('on'));
   const r = recs[qd.goal] || recs.energia;
-  const msg = encodeURIComponent('Hola! Soy ' + nameEl.value.trim() + '. Hice el quiz y me recomendó ' + r.p + '. Quiero mi Guía de Síntomas gratis 💊');
+  const msg = encodeURIComponent('Hola! Soy ' + name + ', hice el quiz y me recomendó ' + r.p + '. ¿Me pueden asesorar?');
+  document.getElementById('r-title').textContent = '¡Listo, ' + name + '! 🎉';
+  document.getElementById('r-subtitle').textContent = 'Basado en tu objetivo de ' + (goalLabels[qd.goal] || qd.goal) + ', esta es tu recomendación personalizada:';
   document.getElementById('r-prod').textContent = r.p;
   document.getElementById('r-desc').textContent = r.d;
   document.getElementById('r-cta').href = 'https://wa.me/50230139416?text=' + msg;
   document.getElementById('qres').classList.add('active');
+  window.scrollTo({ top: document.getElementById('qres').offsetTop - 100, behavior: 'smooth' });
 }
 
 function showRes() {
   document.getElementById('s3').classList.remove('active');
   ['b1','b2','b3','b4'].forEach(id => document.getElementById(id).classList.add('on'));
   const r = recs[qd.goal] || recs.energia;
-  const msg = encodeURIComponent('Hola! Hice el quiz y me recomendó ' + r.p + '. Quiero más información.');
+  const msg = encodeURIComponent('Hola! Hice el quiz y me recomendó ' + r.p + '. ¿Me pueden asesorar?');
   document.getElementById('r-prod').textContent = r.p;
   document.getElementById('r-desc').textContent = r.d;
   document.getElementById('r-cta').href = 'https://wa.me/50230139416?text=' + msg;
   document.getElementById('qres').classList.add('active');
+  window.scrollTo({ top: document.getElementById('qres').offsetTop - 100, behavior: 'smooth' });
 }
 
 function toggleSymptom(el) {

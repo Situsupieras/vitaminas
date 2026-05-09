@@ -19,11 +19,38 @@
 
 /* MOBILE */
 @media(max-width:480px){
+  /* Buttons — full-width for thumb tap */
   .btn{width:100%;justify-content:center}
   .nav-cta{width:auto!important}
-  #wa-fab{width:64px;height:64px}
-  #wa-fab svg{width:34px;height:34px}
+  .hero-ctas{flex-direction:column}
+
+  /* Inputs — 16px exact prevents iOS auto-zoom on focus */
+  input,select,textarea{font-size:16px!important}
+
+  /* Headings — prevent overflow on small screens */
+  .hero-h1{font-size:1.75rem}
+  .sec-h2{font-size:1.35rem}
+  .cta-h2{font-size:1.6rem}
+
+  /* Layout — guaranteed 20px lateral margin */
+  .container{padding:0 1.25rem}
+  .quiz-box{padding:1.75rem 1.25rem}
+
+  /* Quiz options — full-width vertical stack */
+  .q-opts{grid-template-columns:1fr}
+  .q-opt{padding:.95rem 1rem;font-size:1rem}
+
+  /* Result card — compact on small screen */
+  .res-title{font-size:1.25rem}
+  .res-card{padding:1.25rem 1rem}
+
+  /* Sections */
   .sec{padding:2.25rem 0}
   #hero{padding:5rem 0 3rem}
+  #quiz{padding-bottom:3rem}
   .bridge-horiz{grid-template-columns:repeat(2,1fr)}
+
+  /* FAB */
+  #wa-fab{width:64px;height:64px}
+  #wa-fab svg{width:34px;height:34px}
 }

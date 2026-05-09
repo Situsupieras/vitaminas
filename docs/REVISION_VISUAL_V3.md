@@ -50,6 +50,18 @@ Siguiendo el protocolo de **TINITA HEALTH (Kaizen & Project Docs)**, se ha reali
 
 ## 🚦 Recomendación de Próximos Pasos
 
+---
+
+## ⏳ Pendientes (No bloqueantes para lanzamiento)
+
+| Item | Detalle |
+|------|---------|
+| **Lead Magnet — Guía de Síntomas** | Preparar el PDF "Los 10 síntomas más comunes y qué suplemento los resuelve". Una vez listo: (1) reactivar la promesa en el `q-subtext` del gate, (2) actualizar el mensaje de WhatsApp del resultado para incluir la guía, (3) configurar envío automático vía n8n. |
+
+---
+
+## 🚦 Recomendación de Próximos Pasos
+
 1. **Deploy:** Mover `landing_esvitamina/index.html` a la ruta raíz de `/vitaminas` en el servidor.
 2. **Imágenes:** Reemplazar los SVGs de productos por fotografías reales de alta calidad.
 3. **Automatización de Lead Magnet (Cebo):**
