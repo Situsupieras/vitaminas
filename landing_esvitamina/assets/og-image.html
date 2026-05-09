@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>OG Image — Es Vitamina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@page { margin: 0; size: 1200px 630px; }
+@media print {
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .hint { display: none !important; }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0A2540 0%, #1A6B4A 100%);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Background decoration */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.12;
+}
+.blob1 {
+  width: 500px; height: 500px;
+  background: #3ECFA0;
+  top: -100px; right: -80px;
+}
+.blob2 {
+  width: 350px; height: 350px;
+  background: #E8A838;
+  bottom: -120px; left: -60px;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 80px;
+}
+
+.logo {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 52px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+
+.logo span { color: #E8A838; }
+
+.tagline {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.sub {
+  font-size: 22px;
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.sub span {
+  color: #3ECFA0;
+  font-weight: 600;
+}
+
+.sep {
+  color: rgba(255,255,255,0.4);
+  margin: 0 12px;
+}
+
+.hint {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fef3cd;
+  border-top: 2px solid #E8A838;
+  padding: 10px 20px;
+  font-size: 13px;
+  color: #856404;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+</style>
+</head>
+<body>
+
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+
+<div class="content">
+  <div class="logo">Es <span>Vitamina</span></div>
+  <div class="tagline">Tu Nutricionista de Confianza<br>| Guatemala</div>
+  <div class="sub">
+    <span>80+ Suplementos</span>
+    <span class="sep">·</span>
+    <span>Asesoría Gratis</span>
+    <span class="sep">·</span>
+    <span>Envío a Domicilio</span>
+  </div>
+</div>
+
+<div class="hint">
+  💡 <strong>Para exportar como PNG:</strong> Ctrl+P → Guardar como PDF → luego convertir a PNG, <strong>o</strong> usar herramienta de captura de pantalla a 1200×630 px. Zoom del navegador: 100%.
+</div>
+
+</body>
+</html>

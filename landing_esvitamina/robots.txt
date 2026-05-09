@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tiendasts.com/vitaminas/sitemap.xml
