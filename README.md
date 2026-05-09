@@ -1,6 +1,6 @@
 # TINITA HEALTH — Motor de Marketing Automatizado
 
-> **Versión**: 1.0 (Piloto: Magnesio Citrato y Glicinato)
+> **Versión**: 3.1.0 · **Build**: 2026-05-09
 > **Última actualización**: Mayo 2026
 
 ---
@@ -154,30 +154,85 @@ curl -X POST https://n8n.papa-sts.online/webhook/tinita-marketing `
 
 ```
 c:\proyectos\vitaminas\
-├── .agents\skills\           # 39 agentes de marketing e ingeniería
-├── .venv_marketing\          # Entorno virtual Python (NO subir a git)
-├── .env                      # API Keys (NO subir a git)
-├── .gitignore                # Protección de secretos
-├── requirements.txt          # Dependencias del proyecto
-├── scratch\                  # Scripts de automatización
-│   ├── n8n_simulator.py      # Simulador local del pipeline
-│   ├── generate_masterclass.py
+├── .agents\                        # Specs de agentes IA
+│   ├── content-pipeline.md         # Agente: pipeline completo 9 fases
+│   ├── landing-page-builder.md     # Agente: construcción de landing pages
+│   └── skills\                     # Skills usables con el comando Skill
+│       ├── landing-page\SKILL.md
+│       ├── video-production\SKILL.md
+│       └── ... (39 skills total)
+├── landing_esvitamina\             # Landing page Es Vitamina v3.1 ✅
+│   ├── index.html                  # HTML limpio (sin inline styles/scripts)
+│   ├── css\
+│   │   ├── variables.css           # Custom properties + reset + base
+│   │   ├── components.css          # Botones, cards, quiz, badges
+│   │   ├── sections.css            # Secciones específicas + keyframes
+│   │   └── responsive.css          # Media queries (mobile-first)
+│   ├── js\
+│   │   ├── quiz.js                 # Quiz lógica + lead capture gate
+│   │   ├── ui.js                   # Navbar, IntersectionObserver, contadores
+│   │   └── smooth.js               # Smooth scroll
+│   └── assets\
+│       └── guia-sintomas-esvitamina.html  # Lead magnet PDF (10 síntomas)
+├── docs\                           # Documentación del proyecto
+│   ├── brand_esvitamina.md         # Brand bible + design system
+│   ├── LANDING_PLAN.md             # Plan de construcción de landing
+│   └── REVISION_VISUAL_V3.md       # Notas de revisión visual v3
+├── archive\                        # Versiones anteriores
+│   └── index_v2.html               # Landing v2 (backup)
+├── scratch\                        # Scripts de automatización
+│   ├── n8n_simulator.py            # Simulador local del pipeline
 │   ├── prepare_audio_text.py
-│   ├── generate_audio_gtts.py
-│   ├── create_sample_slides.py
-│   └── compose_video.py
-├── n8n_workflow_tinita_marketing.json  # Workflow exportable
+│   ├── generate_audio_gtts.py      # TTS con Google gTTS
+│   ├── generate_audio_google.py    # TTS con Google Cloud
+│   ├── generate_audio_edge.py      # TTS con Edge TTS
+│   ├── compose_video.py            # Composición final de video
+│   └── create_pro_slides.py        # Generación de slides
+├── .venv_marketing\                # Entorno virtual Python (NO en git)
+├── .env                            # API Keys (NO en git)
+├── .gitignore
+├── requirements.txt
+├── AGENTS.md                       # Guía de agentes para Claude Code
+├── ARCHITECTURE.md                 # Arquitectura del sistema
+├── CLAUDE.md                       # Config Claude Code (contexto + skills)
 │
-├── Magnesio citrato y glicinato\      # PILOTO ✅
-│   ├── estrategia_maestra.md
-│   ├── marketing_plan.md
-│   └── n8n_output\           # 8 archivos generados
+├── Magnesio citrato y glicinato\   # PILOTO ✅
+│   ├── README.md
+│   └── n8n_output\                 # 8 archivos generados
 │
-├── Berberina\                # Pendiente
-├── Ashwagandha\              # Pendiente
-├── Omega 3\                  # Pendiente
 └── ... (82 productos total)
 ```
+
+---
+
+## 🌍 Landing Page Es Vitamina
+
+La landing page vive en `landing_esvitamina/`. Arquitectura modular desde v3.1:
+
+| Archivo | Responsabilidad |
+|:---|:---|
+| `css/variables.css` | Design tokens, reset, tipografía base |
+| `css/components.css` | Botones, cards, quiz, badge, phone mockup |
+| `css/sections.css` | Hero, nav, CTA, footer + keyframes |
+| `css/responsive.css` | Media queries (768px / 1024px / 480px) |
+| `js/quiz.js` | 4 pasos + gate de captura de leads (localStorage) |
+| `js/ui.js` | Navbar scroll, IntersectionObserver, contadores |
+| `js/smooth.js` | Smooth scroll para anclas |
+| `assets/guia-sintomas-esvitamina.html` | Lead magnet imprimible (A4, 10 síntomas) |
+
+### Deploy
+
+```powershell
+# Servir localmente para preview
+cd landing_esvitamina
+python -m http.server 8080
+# Abrir http://localhost:8080
+
+# Subir al VPS
+scp -r landing_esvitamina/ sts@148.230.88.220:/var/www/esvitamina/
+```
+
+Los leads capturados por el quiz se guardan en `localStorage['esvitamina_leads']` como array JSON con campos: `name`, `phone`, `goal`, `age`, `urgency`, `timestamp`.
 
 ---
 
