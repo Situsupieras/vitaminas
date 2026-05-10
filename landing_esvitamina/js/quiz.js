@@ -49,11 +49,16 @@ function startSubmit(event) {
 function submitLead() {
   const nameEl = document.getElementById('lead-name');
   const name = nameEl.value.trim();
+
   const leads = JSON.parse(localStorage.getItem('esvitamina_leads') || '[]');
-  leads.push({name, phone:document.getElementById('lead-phone').value.trim(), goal:qd.goal, age:qd.age, urgency:qd.urgency, timestamp:new Date().toISOString()});
+  leads.push({
+    name,
+    phone: document.getElementById('lead-phone').value.trim(),
+    goal: qd.goal, age: qd.age, urgency: qd.urgency,
+    timestamp: new Date().toISOString()
+  });
   localStorage.setItem('esvitamina_leads', JSON.stringify(leads));
-  document.getElementById('s4').classList.remove('active');
-  ['b1','b2','b3','b4'].forEach(id => document.getElementById(id).classList.add('on'));
+
   const r = recs[qd.goal] || recs.energia;
   const msg = encodeURIComponent('Hola! Soy ' + name + ', hice el quiz y me recomendó ' + r.p + '. ¿Me pueden asesorar?');
   document.getElementById('r-title').textContent = '¡Listo, ' + name + '! 🎉';
@@ -61,32 +66,31 @@ function submitLead() {
   document.getElementById('r-prod').textContent = r.p;
   document.getElementById('r-desc').textContent = r.d;
   document.getElementById('r-cta').href = 'https://wa.me/50230139416?text=' + msg;
-  document.getElementById('qres').classList.add('active');
-  requestAnimationFrame(() => {
-    const target = document.getElementById('qres');
-    target.style.display = 'block';
-    setTimeout(() => {
-      window.scrollTo({ top: target.offsetTop - 50, behavior: 'smooth' });
-    }, 300);
-  });
+
+  const s4 = document.getElementById('s4');
+  s4.classList.remove('active');
+  s4.style.display = 'none';
+
+  const qres = document.getElementById('qres');
+  qres.classList.add('active');
+  qres.style.display = 'block';
+
+  ['b1','b2','b3','b4'].forEach(id => document.getElementById(id).classList.add('on'));
 }
 
 function showRes() {
-  document.getElementById('s3').classList.remove('active');
+  const s3 = document.getElementById('s3');
+  s3.classList.remove('active');
+  s3.style.display = 'none';
   ['b1','b2','b3','b4'].forEach(id => document.getElementById(id).classList.add('on'));
   const r = recs[qd.goal] || recs.energia;
   const msg = encodeURIComponent('Hola! Hice el quiz y me recomendó ' + r.p + '. ¿Me pueden asesorar?');
   document.getElementById('r-prod').textContent = r.p;
   document.getElementById('r-desc').textContent = r.d;
   document.getElementById('r-cta').href = 'https://wa.me/50230139416?text=' + msg;
-  document.getElementById('qres').classList.add('active');
-  requestAnimationFrame(() => {
-    const tgt = document.getElementById('qres');
-    tgt.style.display = 'block';
-    setTimeout(() => {
-      window.scrollTo({ top: tgt.offsetTop - 50, behavior: 'smooth' });
-    }, 300);
-  });
+  const qres = document.getElementById('qres');
+  qres.classList.add('active');
+  qres.style.display = 'block';
 }
 
 function toggleSymptom(el) {
