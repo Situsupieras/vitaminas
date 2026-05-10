@@ -39,10 +39,11 @@ function startSubmit(event) {
   if (!nameEl.value.trim()) { nameEl.classList.add('error'); valid = false; }
   if (!phoneEl.value.trim()) { phoneEl.classList.add('error'); valid = false; }
   if (!valid) return;
+  document.activeElement.blur();
   const btn = document.querySelector('#s4 .btn-primary');
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner-dot"></span> Calculando...';
-  setTimeout(submitLead, 1000);
+  setTimeout(submitLead, 1800);
 }
 
 function submitLead() {
@@ -61,9 +62,13 @@ function submitLead() {
   document.getElementById('r-desc').textContent = r.d;
   document.getElementById('r-cta').href = 'https://wa.me/50230139416?text=' + msg;
   document.getElementById('qres').classList.add('active');
-  const target = document.getElementById('qres');
-  target.style.display = 'block';
-  window.scrollTo({ top: target.offsetTop - 50, behavior: 'smooth' });
+  requestAnimationFrame(() => {
+    const target = document.getElementById('qres');
+    target.style.display = 'block';
+    setTimeout(() => {
+      window.scrollTo({ top: target.offsetTop - 50, behavior: 'smooth' });
+    }, 300);
+  });
 }
 
 function showRes() {
@@ -75,9 +80,13 @@ function showRes() {
   document.getElementById('r-desc').textContent = r.d;
   document.getElementById('r-cta').href = 'https://wa.me/50230139416?text=' + msg;
   document.getElementById('qres').classList.add('active');
-  const tgt = document.getElementById('qres');
-  tgt.style.display = 'block';
-  window.scrollTo({ top: tgt.offsetTop - 50, behavior: 'smooth' });
+  requestAnimationFrame(() => {
+    const tgt = document.getElementById('qres');
+    tgt.style.display = 'block';
+    setTimeout(() => {
+      window.scrollTo({ top: tgt.offsetTop - 50, behavior: 'smooth' });
+    }, 300);
+  });
 }
 
 function toggleSymptom(el) {
