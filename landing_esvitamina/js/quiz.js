@@ -29,7 +29,8 @@ function next() {
   } else { showRes(); }
 }
 
-function startSubmit() {
+function startSubmit(event) {
+  if (event) event.preventDefault();
   const nameEl = document.getElementById('lead-name');
   const phoneEl = document.getElementById('lead-phone');
   nameEl.classList.remove('error');
@@ -60,7 +61,9 @@ function submitLead() {
   document.getElementById('r-desc').textContent = r.d;
   document.getElementById('r-cta').href = 'https://wa.me/50230139416?text=' + msg;
   document.getElementById('qres').classList.add('active');
-  window.scrollTo({ top: document.getElementById('qres').offsetTop - 100, behavior: 'smooth' });
+  const target = document.getElementById('qres');
+  target.style.display = 'block';
+  window.scrollTo({ top: target.offsetTop - 50, behavior: 'smooth' });
 }
 
 function showRes() {
@@ -72,7 +75,9 @@ function showRes() {
   document.getElementById('r-desc').textContent = r.d;
   document.getElementById('r-cta').href = 'https://wa.me/50230139416?text=' + msg;
   document.getElementById('qres').classList.add('active');
-  window.scrollTo({ top: document.getElementById('qres').offsetTop - 100, behavior: 'smooth' });
+  const tgt = document.getElementById('qres');
+  tgt.style.display = 'block';
+  window.scrollTo({ top: tgt.offsetTop - 50, behavior: 'smooth' });
 }
 
 function toggleSymptom(el) {
