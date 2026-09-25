@@ -245,6 +245,14 @@ It persuades **the right person** to take **the right action**.
 If the copy feels clever but unclear,  
 rewrite it until it feels obvious.
 
+## References
+
+- `references/copy-frameworks.md` — headline formulas (outcome, problem, audience, differentiation, proof), landing section types, page structure templates (compact ad page, narrative, B2B, launch) and how to write each section. Use it in Phase 4-5 and deliver 2-3 headline/CTA alternatives with a one-line rationale each.
+- `references/natural-transitions.md` — plain transitions and the list of AI-tell phrases to avoid. For Spanish copy the same rule applies: no "cabe destacar", "en el panorama actual", "en la era digital", "sumérgete", "descubre el poder de", "no es solo X, es Y", "en conclusión".
+- CTA formula: action verb + what they get (+ qualifier). Avoid "Enviar", "Más información", "Click aquí".
+
+---
+
 ## When to Use
 This skill is applicable to execute the workflow or actions described in the overview.
 
